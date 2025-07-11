@@ -21,7 +21,8 @@ namespace MinhaListadeTarefas.Controllers
         {
            if (ModelState.IsValid)
             {
-                var model = new Tarefa();
+                ViewData["Message"] = "Dados salvos com sucesso.";
+                return View(tarefa);
             }
             return View();
         }

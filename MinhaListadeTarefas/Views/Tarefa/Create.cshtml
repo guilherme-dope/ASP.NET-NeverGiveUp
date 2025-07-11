@@ -2,6 +2,16 @@
 
 <div class="container mt-4">
     <form asp-action="Create" method="post" asp-controller="Tarefa">
+
+        @{
+            if (ViewData["Message"] != null)
+            {
+                <div>
+                    <span class="text-success">@ViewData["Message"]</span>
+                </div>
+            };
+        }
+
         <div class="row mb-3">
             <div class="col-md-3">
                 <label asp-for="Id" class="form-label"></label>
