@@ -21,7 +21,7 @@ namespace MinhaListadeTarefas.Controllers
         {
            if (ModelState.IsValid)
             {
-               
+                var model = new Tarefa();
             }
             return View();
         }
