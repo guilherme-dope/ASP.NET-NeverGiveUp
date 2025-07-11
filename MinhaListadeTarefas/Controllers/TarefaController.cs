@@ -19,6 +19,11 @@ namespace MinhaListadeTarefas.Controllers
         [HttpPost]
         public IActionResult Create(Tarefa tarefa)
         {
+           if (tarefa.DataFim < tarefa.DataInicio)
+            {
+                ModelState.AddModelError("DataFim", "The end date cannot be earlier than the start date.");
+            } 
+
            if (ModelState.IsValid)
             {
                 ViewData["Message"] = "Dados salvos com sucesso.";
