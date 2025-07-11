@@ -1,6 +1,37 @@
-﻿@*
+﻿@model IEnumerable<MinhaListadeTarefas.Models.Tarefa>
+
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
 <h2>Tarefas</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Descrição</th>
+            <th>Data Início</th>
+            <th>Data Fim</th>      
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var tarefa in Model)
+            {
+                <tr>
+                    <td>@tarefa.Id</td>
+                    <td>@tarefa.Descricao</td>
+                    <td>@tarefa.DataInicio</td>
+                    <td>@tarefa.DataFim</td>       
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@tarefa.Id" class="btn btn-primary">Editar</a>
+                        <form asp-action="Delete" asp-route-id="@tarefa.Id" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-danger">Excluir</button>
+                        </form>
+                </tr>
+            }
+        }
+    </tbody>
