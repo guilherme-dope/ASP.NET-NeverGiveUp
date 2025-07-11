@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MinhaListadeTarefas.Models;
 
 namespace MinhaListadeTarefas.Controllers
 {
@@ -15,7 +16,15 @@ namespace MinhaListadeTarefas.Controllers
             return View();
         }
 
-
+        [HttpPost]
+        public IActionResult Create(Tarefa tarefa)
+        {
+           if (ModelState.IsValid)
+            {
+               
+            }
+            return View();
+        }
 
     }
 }
