@@ -24,18 +24,22 @@ namespace MinhaListadeTarefas.Models
         public DateTime? DataFim { get; set; }
 
         [ForeignKey("Prioridade")]
+        [Display(Name = "Prioridade")]
         public int PrioridadeId { get; set; }
         public virtual Prioridade Prioridade { get; set; }
 
         [ForeignKey("Categoria")]
+        [Display(Name = "Categoria")]
         public int CategoriaId { get; set; }
         public virtual Categoria Categoria { get; set; }
 
         [ForeignKey("Status")]
+        [Display(Name = "Status")]
         public int StatusId { get; set; }
         public virtual Status Status { get; set; }
 
         [ForeignKey("Responsavel")]
+        [Display(Name = "Responsavel")]
         public int ResponsavelId { get; set; }
         public virtual Responsavel Responsavel { get; set; }
 
