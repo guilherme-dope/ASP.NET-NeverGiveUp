@@ -29,7 +29,7 @@ namespace MinhaListadeTarefas.Controllers
         public IActionResult Create()
         {
             ViewData["Categorias"] = new SelectList(_context.Categorias.ToList(), "Id", "Nome");
-            ViewData["Prioridades"] = new SelectList(_context.Prioridade.ToList(), "Id", "Descricao");
+            ViewData["Prioridades"] = new SelectList(_context.Prioridade.ToList(), "Id", "Nome");
             ViewData["Responsaveis"] = new SelectList(_context.Responsaveis.ToList(), "Id", "Nome");
             ViewData["Status"] = new SelectList(_context.Statuses.ToList(), "Id", "Nome");
 
