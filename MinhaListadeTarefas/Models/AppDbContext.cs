@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MinhaListadeTarefas.Models;
 
 namespace MinhaListadeTarefas.Models
 {
@@ -33,6 +34,7 @@ namespace MinhaListadeTarefas.Models
                 .WithMany()
                 .HasForeignKey(t => t.StatusId);
         }
+        public DbSet<MinhaListadeTarefas.Models.Prioridade> Prioridade { get; set; } = default!;
     }
 }
 
