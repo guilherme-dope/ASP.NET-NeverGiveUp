@@ -1,10 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using MinhaListadeTarefas.Models;
+using System.Data;
 
 namespace MinhaListadeTarefas.Controllers
 {
     public class TarefaController : Controller
     {
+        private AppDbContext _context;
+
+        public TarefaController(AppDbContext context)
+        {
+            _context = context;
+        }
+
         public IActionResult Index()
         {
             var list = new List<Tarefa>();
@@ -19,6 +28,12 @@ namespace MinhaListadeTarefas.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            ViewData["Categorias"] = new SelectList(_context.Categorias.ToList(), "Id", "Nome");
+            ViewData["Prioridades"] = new SelectList(_context.Prioridade.ToList(), "Id", "Descricao");
+            ViewData["Responsaveis"] = new SelectList(_context.Responsaveis.ToList(), "Id", "Nome");
+            ViewData["Status"] = new SelectList(_context.Statuses.ToList(), "Id", "Nome");
+
+
             return View();
         }
 
