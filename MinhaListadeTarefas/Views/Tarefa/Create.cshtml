@@ -13,31 +13,73 @@
         } *@
 
         <div class="row mb-3">
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <label asp-for="Id" class="form-label"></label>
                 <input type="text" asp-for="Id" class="form-control" />
                 <span asp-validation-for="Id" class="text-danger"></span>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <label asp-for="Descricao" class="form-label"></label>
                 <input type="text" asp-for="Descricao" class="form-control" />
                 <span asp-validation-for="Descricao" class="text-danger"></span>
             </div>
         </div>
         <div class="row mb-3">
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <label asp-for="DataInicio" class="form-label"></label>
                 <input type="datetime-local" asp-for="DataInicio" class="form-control" />
                 <span asp-validation-for="DataInicio" class="text-danger"></span>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <label asp-for="DataFim" class="form-label"></label>
                 <input type="datetime-local" asp-for="DataFim" class="form-control" />
                 <span asp-validation-for="DataFim" class="text-danger"></span>
             </div>
         </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+               
+                <label asp-for="CategoriaId" class="form-label"></label>
+                <select asp-for="CategoriaId" class="form-select" asp-items="@ViewBag.Categorias">
+                    <option value="">Selecione uma Categoria</option></select>
+      
+            </div>
+
+            <div class="col-md-4">
+
+                <label asp-for="PrioridadeId" class="form-label"></label>
+                <select asp-for="PrioridadeId" class="form-select" asp-items="@ViewBag.Prioridades">
+                    <option value="">Selecione uma Prioridade</option>
+                </select>
+
+            </div>
+    
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+
+                <label asp-for="ResponsavelId" class="form-label"></label>
+                <select asp-for="ResponsavelId" class="form-select" asp-items="@ViewBag.Responsaveis">
+                    <option value="">Selecione o(a) Responsavel</option>
+                </select>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <label asp-for="Status" class="form-label"></label>
+                <select asp-for="Status" class="form-select" asp-items="@ViewBag.Status">
+                    <option value="">Selecione o Status</option>
+                </select>
+
+            </div>
+        </div>
+
+
         <div class="row">
-            <div class="col-md-6 text-end">
+            <div class="col-md-8 text-end">
                 <button type="submit" class="btn btn-primary">Create</button>
             </div>
         </div>
