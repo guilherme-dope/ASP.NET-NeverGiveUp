@@ -12,6 +12,7 @@ namespace MinhaListadeTarefas.Models
         public DbSet<Status> Statuses { get; set; }
         public DbSet<Responsavel> Responsaveis { get; set; }
         public DbSet<Tarefa> Tarefas { get; set; }
+        public DbSet<Prioridade> Prioridade { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Tarefa>()
@@ -34,7 +35,7 @@ namespace MinhaListadeTarefas.Models
                 .WithMany()
                 .HasForeignKey(t => t.StatusId);
         }
-        public DbSet<MinhaListadeTarefas.Models.Prioridade> Prioridade { get; set; } = default!;
+        
     }
 }
 
