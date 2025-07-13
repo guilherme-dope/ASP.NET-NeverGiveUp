@@ -1,8 +1,6 @@
 ﻿namespace MinhaListadeTarefas.Interfaces
 {
-    public interface IRepositoryBase
-    {
-       
+      
 
         public interface IRepositoryBase<T> where T : class
         {
@@ -30,4 +28,4 @@
 
         }
     }
-}
+
