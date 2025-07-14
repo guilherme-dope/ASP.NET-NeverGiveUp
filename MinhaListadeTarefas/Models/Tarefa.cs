@@ -5,7 +5,7 @@ namespace MinhaListadeTarefas.Models
 {
     public class Tarefa
     {
-        [Required(ErrorMessage = "ID is mandatory")]
+        //[Required(ErrorMessage = "ID is mandatory")]
         [Display(Name = "ID da Tarefa")]
         [Key]
         public int? Id { get; set; }
@@ -26,22 +26,22 @@ namespace MinhaListadeTarefas.Models
         [ForeignKey("Prioridade")]
         [Display(Name = "Prioridade")]
         public int PrioridadeId { get; set; }
-        public virtual Prioridade Prioridade { get; set; }
+        public virtual Prioridade? Prioridade { get; set; }
 
         [ForeignKey("Categoria")]
         [Display(Name = "Categoria")]
         public int CategoriaId { get; set; }
-        public virtual Categoria Categoria { get; set; }
+        public virtual Categoria? Categoria { get; set; }
 
         [ForeignKey("Status")]
         [Display(Name = "Status")]
         public int StatusId { get; set; }
-        public virtual Status Status { get; set; }
+        public virtual Status? Status { get; set; }
 
         [ForeignKey("Responsavel")]
         [Display(Name = "Responsavel")]
         public int ResponsavelId { get; set; }
-        public virtual Responsavel Responsavel { get; set; }
+        public virtual Responsavel? Responsavel { get; set; }
 
         public DateTime PrazoConclusao { get; set; }
 
