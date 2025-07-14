@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MinhaListadeTarefas.Models;
+using MinhaListadeTarefas.Services;
 using System.Data;
 
 namespace MinhaListadeTarefas.Controllers
@@ -8,45 +9,49 @@ namespace MinhaListadeTarefas.Controllers
     public class TarefaController : Controller
     {
         private AppDbContext _context;
+        private ServiceTarefa _serviceTarefa;
 
         public TarefaController(AppDbContext context)
         {
             _context = context;
+            _serviceTarefa = new ServiceTarefa(_context);
         }
 
-        public void CarregarCombos()
+        public async Task CarregarCombos()
         {
-            ViewData["Categorias"] = new SelectList(_context.Categorias.ToList(), "Id", "Nome");
-            ViewData["Prioridades"] = new SelectList(_context.Prioridade.ToList(), "Id", "Nome");
-            ViewData["Responsaveis"] = new SelectList(_context.Responsaveis.ToList(), "Id", "Nome");
-            ViewData["Status"] = new SelectList(_context.Statuses.ToList(), "Id", "Nome");
+            ViewData["Categorias"] = new SelectList(await _serviceTarefa.RptCategoria.ListarTodosAsync(), "Id", "Nome");
+            ViewData["Prioridades"] = new SelectList(await _serviceTarefa.RptPrioridade.ListarTodosAsync(), "Id", "Nome");
+            ViewData["Responsaveis"] = new SelectList(await _serviceTarefa.RptResponsavel.ListarTodosAsync(), "Id", "Nome");
+            ViewData["Status"] = new SelectList(await _serviceTarefa.RptStatus.ListarTodosAsync(), "Id", "Nome");
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var listaTask = await _serviceTarefa.RptTarefa.ListarTodosAsync();
+            return View(listaTask);
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            CarregarCombos();
+            await CarregarCombos();
             return View();
         }
 
         [HttpPost]
-        public IActionResult Create(Tarefa tarefa)
+        public async Task<IActionResult> Create(Tarefa tarefa)
         {
-            CarregarCombos();
+            await CarregarCombos();
 
             if (tarefa.DataFim < tarefa.DataInicio)
             {
                 ModelState.AddModelError("DataFim", "The end date cannot be earlier than the start date.");
-            } 
+            }
 
-           if (ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 ViewData["Message"] = "Dados salvos com sucesso.";
+                await _serviceTarefa.RptTarefa.IncluirAsync(tarefa);
                 return View(tarefa);
             }
             return View();
