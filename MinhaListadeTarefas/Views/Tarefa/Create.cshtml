@@ -12,12 +12,17 @@
             };
         } *@
 
+
+
         <div class="row mb-3">
-            <div class="col-md-4">
+
+            <input type="hidden" asp-for="@Model.Id" />
+
+            @* <div class="col-md-4">
                 <label asp-for="Id" class="form-label"></label>
                 <input type="text" asp-for="Id" class="form-control" />
                 <span asp-validation-for="Id" class="text-danger"></span>
-            </div>
+            </div> *@
             <div class="col-md-4">
                 <label asp-for="Descricao" class="form-label"></label>
                 <input type="text" asp-for="Descricao" class="form-control" />
@@ -69,20 +74,28 @@
 
             <div class="col-md-4">
 
-                <label asp-for="Status" class="form-label"></label>
-                <select asp-for="Status" class="form-select" asp-items="@ViewBag.Status">
+                <label asp-for="StatusId" class="form-label"></label>
+                <select asp-for="StatusId" class="form-select" asp-items="@ViewBag.Status">
                     <option value="">Selecione o Status</option>
                 </select>
 
             </div>
         </div>
 
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label asp-for="Observacao" class="form-label"></label>
+                <input type="text" asp-for="Observacao" class="form-control" />
+                <span asp-validation-for="Observacao" class="text-danger"></span>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-md-8 text-end">
                 <button type="submit" class="btn btn-primary">Create</button>
             </div>
         </div>
+
     </form>
 </div>
 
