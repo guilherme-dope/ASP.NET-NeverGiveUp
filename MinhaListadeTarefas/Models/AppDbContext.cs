@@ -9,7 +9,7 @@ namespace MinhaListadeTarefas.Models
         {
         }
         public DbSet<Categoria> Categorias { get; set; }
-        public DbSet<Status> Statuses { get; set; }
+        public DbSet<Status> Status { get; set; }
         public DbSet<Responsavel> Responsaveis { get; set; }
         public DbSet<Tarefa> Tarefas { get; set; }
         public DbSet<Prioridade> Prioridade { get; set; }
