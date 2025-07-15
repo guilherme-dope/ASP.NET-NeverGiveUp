@@ -74,8 +74,8 @@
 
             <div class="col-md-4">
 
-                <label asp-for="StatusId" class="form-label"></label>
-                <select asp-for="StatusId" class="form-select" asp-items="@ViewBag.Status">
+                <label asp-for="Status" class="form-label"></label>
+                <select asp-for="Status" class="form-select" asp-items="@ViewBag.Status">
                     <option value="">Selecione o Status</option>
                 </select>
 
@@ -92,7 +92,7 @@
 
         <div class="row">
             <div class="col-md-8 text-end">
-                <button type="submit" class="btn btn-primary">Create</button>
+                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i>&nbsp;Create</button>
             </div>
         </div>
 
