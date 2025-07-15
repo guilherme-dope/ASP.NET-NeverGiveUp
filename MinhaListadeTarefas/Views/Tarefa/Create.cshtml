@@ -102,9 +102,12 @@
 @section Scripts {
         <script>
             const message = '@ViewData["Message"]';
-
-            if (message !== '') {
-                alert(message);
+            if (message != ""){
+                Swal.fire({
+                  title: "Lista de Tarefas",
+                  text: "Tarefa criada com sucesso!",
+                  icon: "success"
+                });
             }
         </script>
     }
