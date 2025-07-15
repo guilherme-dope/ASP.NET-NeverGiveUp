@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MinhaListadeTarefas.Models;
 using MinhaListadeTarefas.Services;
+using MinhaListadeTarefas.Helpers;
 using System.Data;
 
 namespace MinhaListadeTarefas.Controllers
@@ -36,6 +37,13 @@ namespace MinhaListadeTarefas.Controllers
         {
             await CarregarCombos();
             return View();
+        }
+
+        public IActionResult IndexPaginado(int pageIndex = 1, int pageSize = 3)
+        {
+            var listaTarefas = _serviceTarefa.RptTarefa.ListarTodos().AsQueryable();
+            var paginatedList = PaginatedList<Tarefa>.CreateAsync(listaTarefas, pageIndex, pageSize);
+            return View(paginatedList);
         }
 
         [HttpPost]
