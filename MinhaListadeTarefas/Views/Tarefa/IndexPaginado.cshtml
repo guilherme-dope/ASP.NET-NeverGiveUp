@@ -6,36 +6,6 @@
 @{
 }
 
-<h2>Lista de Tarefas com paginacao</h2>
+@* Code moved to _ListaTarefas.cshtml *@
 
-<div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Descricao</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @item.Descricao
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-
-    @if (Model.HasPreviousPage)
-    {
-        <a asp-action="IndexPaginado" asp-route-pageIndex="@(Model.PageIndex - 1)" class="btn btn-primary">Anterior</a>
-    }
-
-    Pagina @(Model.PageIndex) de @Model.TotalPages
-    @if (Model.HasNextPage)
-    {
-        <a asp-action="IndexPaginado" asp-route-pageIndex="@(Model.PageIndex + 1)" class="btn btn-primary">Próximo</a>
-    }
-
-</div>
+<partial name="_ListaTarefas" model="@Model" ></partial>
