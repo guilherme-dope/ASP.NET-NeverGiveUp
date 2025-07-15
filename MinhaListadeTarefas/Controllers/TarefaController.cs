@@ -57,9 +57,29 @@ namespace MinhaListadeTarefas.Controllers
             return View();
         }
 
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)        
         {
+            await CarregarCombos();
 
+            var tarefa = await _serviceTarefa.RptTarefa.SelecionarChaveAsync(id);
+            return View(tarefa);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(Tarefa tarefa)
+        {
+            await CarregarCombos();
+
+            if (tarefa.DataFim < tarefa.DataInicio)
+            {
+                ModelState.AddModelError("DataFim", "The end date cannot be earlier than the start date.");
+            }
+            if (ModelState.IsValid)
+            {
+                ViewData["Message"] = "a";
+                await _serviceTarefa.RptTarefa.AlterarAsync(tarefa);
+                return View(tarefa);
+            }
             return View();
         }
     }
