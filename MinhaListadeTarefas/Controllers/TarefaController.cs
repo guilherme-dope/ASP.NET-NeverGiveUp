@@ -39,11 +39,25 @@ namespace MinhaListadeTarefas.Controllers
             return View();
         }
 
+       
+
         public IActionResult IndexPaginado(int pageIndex = 1, int pageSize = 3)
         {
             var listaTarefas = _serviceTarefa.RptTarefa.ListarTodos().AsQueryable();
             var paginatedList = PaginatedList<Tarefa>.CreateAsync(listaTarefas, pageIndex, pageSize);
             return View(paginatedList);
+        }
+
+        public IActionResult Consultar()
+        {
+            //var tarefa = _serviceTarefa.RptTarefa.SelecionarChave(id);
+            return View();
+        }
+
+        public IActionResult Pesquisar(string termo)
+        {
+            var listaTarefas = _serviceTarefa.RptTarefa.PesquisarTarefa(termo);
+            return PartialView("_Pesquisa", listaTarefas);
         }
 
         [HttpPost]

@@ -1,0 +1,38 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h2>Consulta de Tarefas</h2>
+
+<div>
+    <input id="txtTermo" type="text" class="form-control" />
+    <button onclick="Pesquisar()" type="button" style="margin-top:20px" class="btn btn-primary">Pesquisar</button>
+</div>
+
+<div>
+    <div id="lista">
+        
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const Pesquisar = () => {
+            var termo = $("#txtTermo").val();
+            var url = `/Tarefa/Pesquisar?termo=${termo}`;
+            console.log(url);
+            $.get(url, function (data) {
+            $("#lista").html(data);
+            }).fail(function () {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro',
+                    text: 'Ocorreu um erro ao buscar as tarefas.'
+                });
+            });
+        }
+    </script>
+
+}
